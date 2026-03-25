@@ -1,13 +1,38 @@
-# Функция calculate_sum(n), возвращающую сумму чисел от 1 до n.
+# 1. Функция calculate_sum(n), возвращающая сумму чисел от 1 до n.
 
 def calculate_sum(n):
 
-    if not isinstance(n, int) or n < 1: raise ValueError("Введите целое положительное число")
+    if not isinstance(n, int):
+        if n is None: return "Некорректное введение"
+        if isinstance(n, float): return "Введено не целое число"
+        if isinstance(n, str):
 
-    sum = 0
-    for iter in range(1, n + 1):
+            if n == "": return "Пустота!"
 
-        sum += iter
+            elif n.strip() == "": return "Введена пустая строка"
 
-    return sum
+            else:
+                return "Введен символ"
 
+        return "Некорректное введение"
+
+    if n == 0: return "Введен ноль"
+    if n < 0: return "Введено отрицательное число"
+
+    summator = 0
+    for i in range(1, n + 1):
+
+        summator += i
+
+    return summator
+
+print(calculate_sum("  "))
+
+# 2. Функция count_words(line), возвращающая количество слов в строке (слова разделены пробелами).
+
+def count_words(line):
+
+    return len(line.lstrip().rstrip().split())
+
+
+print(count_words(5))
