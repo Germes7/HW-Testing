@@ -26,13 +26,16 @@ def calculate_sum(n):
 
     return summator
 
-print(calculate_sum("  "))
+# print(calculate_sum("  "))
 
 # 2. Функция count_words(line), возвращающая количество слов в строке (слова разделены пробелами).
 
 def count_words(line):
 
-    return len(line.lstrip().rstrip().split())
+    if not isinstance(line, str):
+        return "Ошибка: введена не строка"
+
+    return len(line.strip().split())
 
 
-print(count_words(5))
+print(count_words("Hello "))
