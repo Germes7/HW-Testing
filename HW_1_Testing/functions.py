@@ -37,5 +37,16 @@ def count_words(line):
 
     return len(line.strip().split())
 
+# print(count_words("Hello "))
 
-print(count_words("Hello "))
+# 3. Функция is_number(string), которая проверяет, что переданная строка это целое число.
+
+def is_number(string):
+
+    if not isinstance(string, str):
+        return "Введена не строка"
+
+    if string.isdigit(): return string
+
+a = is_number("12")
+print(int(a) + 4)
