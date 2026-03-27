@@ -43,10 +43,9 @@ def count_words(line):
 
 def is_number(string):
 
-    if not isinstance(string, str):
-        return "Введена не строка"
+    if not isinstance(string, str) or (string, None):
+        return "Ошибка"
 
     if string.isdigit(): return string
 
-a = is_number("12")
-print(int(a) + 4)
+print(is_number("1.2"))

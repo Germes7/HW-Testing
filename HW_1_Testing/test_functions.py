@@ -48,7 +48,7 @@ def test_count_words_one_value():
 def test_count_words_one_space():
     assert count_words("   ") == 0, "Введены одни пробелы"
 
-def test_count_words_not_strig():
+def test_count_words_not_string():
     assert count_words(5) == "Ошибка: введена не строка"
 
 def test_count_words_tab_space():
@@ -65,3 +65,28 @@ def test_count_words_input_list():
 
 def test_count_words_input_tuple():
     assert count_words(()) == "Ошибка: введена не строка", "Введен кортеж"
+
+
+def test_is_number_empty_string():
+    assert is_number("") == "Ошибка", "Введена пустая строка"
+
+def test_is_number_double_string():
+    assert is_number("1 2") == "Ошибка", "Введены два числа"
+
+def test_is_number_no_number_string():
+    assert is_number("gh") == "Ошибка", "Введено строчно не число"
+
+def test_is_number_input_symbol():
+    assert is_number("+") == "Ошибка", "Введен символ"
+
+def test_is_number_input_string_symbol_and_number():
+    assert is_number("+ 12")  == "Ошибка", "Введены символ и число"
+
+def test_is_number_input_number():
+    assert is_number(1)  == "Ошибка", "Введено число"
+
+def test_is_number_list():
+    assert is_number([]) == "Ошибка", "Введен список"
+
+def test_is_number_input_string_float():
+    assert is_number("2.71") == "Ошибка", "Введен float"
