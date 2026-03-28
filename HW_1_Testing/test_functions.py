@@ -90,3 +90,28 @@ def test_is_number_list():
 
 def test_is_number_input_string_float():
     assert is_number("2.71") == "Ошибка", "Введен float"
+
+
+def test_unique_empty_list():
+    assert unique([]) == [], "Введен пустой список"
+
+def test_unique_string():
+    assert unique("12") == "Ошибка", "Введена строка"
+
+def test_unique_no_number_string():
+    assert unique("gh") == "Ошибка", "Введено строчно не число"
+
+def test_unique_input_tuple():
+    assert unique(()) == "Ошибка", "Введен кортеж"
+
+def test_unique_input_float_and_number():
+    assert unique([1.2, 3, 3.0]) == [1.2, 3]
+
+def test_unique_input_different_value():
+    assert unique([2.71, 3.14, "+", 5.0, 3.14, 1.2, 3, "v", "+", 2]) == [2.71, 3.14, '+', 5.0, 1.2, 3, 'v', 2]
+
+def test_unique_input_empty_lists():
+    assert unique([[], [], []]) == [[]]
+
+def test_unique_input_float():
+    assert unique([2.71, 3.14, 5.0, 3.14, 1.2]) == [2.71, 3.14, 5.0, 1.2]

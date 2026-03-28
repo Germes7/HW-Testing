@@ -26,7 +26,6 @@ def calculate_sum(n):
 
     return summator
 
-# print(calculate_sum("  "))
 
 # 2. Функция count_words(line), возвращающая количество слов в строке (слова разделены пробелами).
 
@@ -37,7 +36,6 @@ def count_words(line):
 
     return len(line.strip().split())
 
-# print(count_words("Hello "))
 
 # 3. Функция is_number(string), которая проверяет, что переданная строка это целое число.
 
@@ -48,4 +46,21 @@ def is_number(string):
 
     if string.isdigit(): return string
 
-print(is_number("1.2"))
+
+# 4. Функция unique(lst), возвращающая список уникальных элементов в переданном списке.
+
+def unique(lst):
+
+    if not isinstance(lst, list):
+        return "Ошибка"
+
+    if not lst: return []
+
+    if len(lst) == 1: return lst
+
+    uniq_lst = []
+    for i in lst:
+        if i not in uniq_lst:
+            uniq_lst.append(i)
+
+    return uniq_lst
