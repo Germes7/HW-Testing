@@ -11,12 +11,14 @@
 
 class Temperature:
 
-    celsius: int
+    __celsius: int
 
     def __init__(self, celsius: int):
-        self.__celsius = celsius
 
-        if not isinstance(celsius, int): raise ValueError("Должен быть тип int")
+        if not isinstance(celsius, int): raise TypeError("Должен быть тип int")
+        if celsius < -273.14: raise ValueError("Не забывай про абсолютный ноль")
+
+        self.__celsius = celsius
 
     def to_fahrenheit(self):
 
@@ -31,9 +33,9 @@ class Temperature:
     def is_positive(self):
 
         if self.__celsius > 0 and self.to_fahrenheit() > 0 and self.to_kelvin() > 0:
-            return "Температуры все градусных систем, положительны"
+            return True
 
-        return "Какая либо (или все) из температурных систем, отрицательная (либо = 0)"
+        return False
 
     def get_value(self):
         return (f"По Цельсию: {self.__celsius} C\n"
@@ -45,7 +47,7 @@ class Temperature:
 
         if t1.__celsius > t2.__celsius: return -1
         elif t1.__celsius < t2.__celsius: return 1
-        else: return 0
+        elif t1.__celsius == t2.__celsius: return 0
 
 
 # temp_1 = Temperature(0)
