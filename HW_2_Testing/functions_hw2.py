@@ -85,8 +85,11 @@ class LibraryBook:
     __year_publication: int
 
     def __init__(self, title: str, autor: str, year_publication: int):
-        if not isinstance(title, str):
+        if not isinstance(title, str) or not isinstance(autor, str):
             raise TypeError("type: str")
+
+        if not isinstance(year_publication, int):
+            raise TypeError("type: int")
 
         self.__title = title
         self.__autor = autor
