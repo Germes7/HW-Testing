@@ -1,5 +1,6 @@
 from functions_hw2 import *
 import pytest
+import pip
 
 @pytest.fixture
 def clas_temp_1():
@@ -75,6 +76,14 @@ def test_compare(clas_temp_1, clas_temp_3):
 
     assert Temperature.compare(t1, t2) == -1
 
+def test_temp_compare_equal():
+    t1 = Temperature(10)
+    t2 = Temperature(10)
+    assert Temperature.compare(t1, t2) == 0
+
+def test_temp_get_value(clas_temp_1):
+    assert "По Цельсию: 7" in clas_temp_1.get_value()
+
 @pytest.fixture
 def book1():
     book = LibraryBook("Вий", "Гоголь Н.В.", 1835)
@@ -99,6 +108,42 @@ def test_incorrect_type_str_year_publication():
     with pytest.raises(TypeError):
         LibraryBook("Кристина", "Стивен Кинг", "сто")
 
+def test_rename_title(book1):
+    book1.rename_title("Бег")
+    assert book1.get_title() == "Бег"
+
+def test_rename_title_error(book1):
+    with pytest.raises(TypeError):
+        book1.rename_title(555)
+
+def test_book_init_error_title():
+    with pytest.raises(TypeError):
+        LibraryBook(123, "Автор", 2024)
+
+def test_book_init_error_author():
+    with pytest.raises(TypeError):
+        LibraryBook("Вий", 123, 1835)
+
+def test_book_init_error_year():
+    with pytest.raises(TypeError):
+        LibraryBook("Вий", "Гоголь Н.В.", "год")
+
+def test_book_is_not_old():
+    new_book = LibraryBook("Тест", "Автор", 2020)
+    assert new_book.is_old(2024) is False
+
+def test_incorrect_type_str_age(book1):
+    with pytest.raises(TypeError):
+        book1.age("сто")
+
+def test_incorrect_type_float_age(book1):
+    with pytest.raises(TypeError):
+        book1.age(123.5)
+
+def test_is_old_incorrect_type(book1):
+    with pytest.raises(TypeError):
+        book1.is_old("пятьдесят лет")
+
 def test_get_title1(book1: LibraryBook):
     assert book1.get_title() == "Вий"
 
@@ -117,21 +162,18 @@ def test_get_year_publication1(book1: LibraryBook):
 def test_get_year_publication2(book2: LibraryBook):
     assert book2.get_year_publication() == 2006
 
+def test_book_info(book1):
+    expected = "Книга: Вий. Автор: Гоголь Н.В.. Год издания: 1835 г."
+    assert book1.info() == expected
+
 def test_is_old1(book1: LibraryBook):
     assert book1.is_old(2000) is True
 
 def test_is_old2(book2: LibraryBook):
     assert book2.is_old(2000) is not True
 
+def test_book_age(book1):
+    assert book1.age(2024) == 189
+
 def test_age1(book1: LibraryBook):
     assert book1.age(2026) == 191
-
-def test_incorrect_type_str_age():
-
-    with pytest.raises(TypeError):
-        LibraryBook.age("сто")
-
-def test_incorrect_type_float_age():
-
-    with pytest.raises(TypeError):
-        LibraryBook.age(123.5)
